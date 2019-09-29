@@ -1,0 +1,59 @@
+{% extends 'root/base.html' %}
+{% load static %}
+{% load tags_extra %}
+{% load crispy_forms_tags %}
+{% block navigation %}
+    <li class="nav-item nav-link"><a href="{% url 'register' usertype %}">Apply for Registration</a></li>
+{% endblock navigation %}
+{% block style %}
+<style>
+.background-login{
+    background-image: url('{% static usertype|background_image %}');
+    opacity: 0.7;
+}
+</style>
+{% endblock style %}
+{% block content %}
+<div class="hero">
+    <section class="home-slider owl-carousel">
+        <div class="slider-item background-login">
+            <div class="overlay"></div>
+            <div class="container">
+                <div class="row no-gutters slider-text align-login-box">
+                    <div class="col-md-5 ml-auto">
+                        <form method="POST" class="bg-white p-5 login">
+                            <!-- This is important for security purpose -->
+                            {% csrf_token %}
+                            <fieldset class="form-group">
+                                {% if messages %}
+                                    {% for message in messages %}
+                                    <div class="alert alert-{{ message.tags }}">
+                                        {{ message }}
+                                    </div>
+                                    {% endfor %}
+                                {% endif %}
+                                <!-- Login Form -->
+                                <legend class="border-bottom mb-4 pb-2 text-center">{{ usertype|upper_case }}</legend>
+                                <label for="email" class="required-field control-label">Email</label>
+                                <input type="email" name="email" class="form-control" required="required"
+                                       title="Enter Email ID">
+                                <br>
+                                <label for="password" class="required-field control-label">Password</label>
+                                <input type="password" name="password" class="form-control" required="required"
+                                       title="Enter Password">
+                                <br>
+                                <!-- Forgot Password -->
+                                <a class="forgot-password" href="{% url 'forgot-password' %}">Forgot Password?</a>
+                            </fieldset>
+                            <!-- Submit Button -->
+                            <div class="form-group">
+                                <button class="btn btn-outline-success btn-block py-2" type="submit">Login</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock content %}

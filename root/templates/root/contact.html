@@ -1,0 +1,84 @@
+{% extends "root/base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block js %}
+<script type="text/javascript">
+  function message(text){
+    if(text!=''){
+      alert(text);
+    }
+  }
+</script>
+{% endblock js %}
+{% block body_content %}
+<body id="myPage" onload="message('{{ alert }}')">
+{% endblock body_content %}
+{% block style %}
+<style>
+.background-contact{
+    background-image: url('{% static 'root/images/home.jpg' %}');
+}
+</style>
+{% endblock style %}
+{% block content %}
+
+    <div class="hero">
+      <section class="home-slider owl-carousel">
+        <div class="hero-wrap background-contact">
+          <div class="overlay"></div>
+          <div class="container">
+            <div class="row no-gutters slider-text d-flex align-itemd-end justify-content-center">
+              <div class="col-md-9 ftco-animate text-center d-flex align-items-end justify-content-center">
+                <div class="text">
+                    <h1 class="mb-4 bread">Contact us</h1>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+
+    <section class="ftco-section contact-section bg-light">
+      <div class="container">
+        <div class="row d-flex mb-5 contact-info">
+          <div class="col-md-12 mb-4">
+            <h2 class="h3">Contact Information</h2>
+          </div>
+          <div class="w-100"></div>
+          <div class="col-md-4 d-flex">
+          	<div class="info bg-white p-4">
+	            <p><span>Phone:</span> <a href="tel://1234567920">+ 1235 2355 98</a></p>
+	          </div>
+          </div>
+          <div class="col-md-4 d-flex">
+          	<div class="info bg-white p-4">
+	            <p><span>Email:</span> <a>digirc2019@gmail.com</a></p>
+	          </div>
+          </div>
+          <div class="col-md-4 d-flex">
+          	<div class="info bg-white p-4">
+	            <p><span>Website</span> <a href="#">yoursite.com</a></p>
+	          </div>
+          </div>
+        </div>
+        <div class="row block-9">
+          <div class="col-md-12 mb-4" >
+            <h2 class="h3">Fill Details</h2>
+          </div>
+              
+          <div class="col-md-6 order-md-last d-flex" >
+            <form method="Post" class="bg-white p-5 contact-form">
+                {% csrf_token %}
+                {{ form|crispy }}
+              <div class="form-group">
+                <input type="submit" value="Send Message" class="btn btn-primary py-3 px-5">
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+{% endblock content %}
