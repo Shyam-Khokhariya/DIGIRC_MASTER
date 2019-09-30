@@ -36,34 +36,28 @@
 </head>
 
 <body>
-    <div class="dashboard-header">
-        <nav class="navbar navbar-expand-lg bg-white fixed-top">
-            <a class="navbar-brand" href="{% url 'manufacturer-dashboard' %}">{{ name }}</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse " id="navbarSupportedContent">
-                <ul class="navbar-nav ml-auto navbar-right-top">
-                    {% if 'display' in request.path %}
-                    <li class="nav-item">
-                        <div id="custom-search" class="top-search-bar">
-                            <input type="text" class="form-control" name="search" id="search-bar" placeholder="Search.." onkeyup="search()"/>
-                        </div>
-                    </li>
-                    {% endif %}
-
-                    <li class="nav-item">
-                        <div class="top-search-bar">
-                            <a class="btn btn-outline-danger" href="{% url 'logout' %}"><i class="fas fa-power-off mr-2"></i>Logout</a>
-                        </div>
-                    </li>
-                </ul>
-            </div>
+<!---------------Navigation bar----------------->
+    <div class="dashboard-main-wrapper">
+        <div class="dashboard-header">
+            <nav class="navbar navbar-expand-lg bg-white fixed-top">
+                <a class="navbar-brand" href="{% url 'manufacturer-dashboard' %}">{{ name }}</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                <div id="custom-search" class="navbar-toggler top-search-bar" style="display:inline;position:absolute;right:20px;">
+                    <a class="btn btn-outline-danger" href="{% url 'logout' %}"><i class="fas fa-power-off mr-2"></i>Logout</a>
+                </div>
         </nav>
-    </div>
+        </div>
+        <!-------------- end navbar --------------->
 
-<!--        left side bar      -->
-    <div class="nav-left-sidebar sidebar-dark">
+
+
+
+
+
+        <!-- left sidebar -->
+        <div class="nav-left-sidebar sidebar-dark">
         <div class="menu-list">
             <nav class="navbar navbar-expand-lg navbar-light">
                 <a class="d-xl-none d-lg-none" href="#">Dashboard</a>
@@ -93,6 +87,8 @@
             </nav>
         </div>
     </div>
+
+<!------------- end left sidebar ------------------->
 
     {% block content %}
     {% endblock %}

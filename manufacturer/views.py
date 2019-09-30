@@ -16,7 +16,7 @@ from django.core.paginator import Paginator
 from django.shortcuts import render
 
 from collections import OrderedDict
-
+import numpy as np
 from .fusioncharts import FusionCharts
 
 
@@ -73,8 +73,8 @@ def chart1(vehicles,context):
         # print(v.val())
         data=data.append(pd.DataFrame([v.val()]))
     # print(data.columns)
-    context['data1']=data
-
+    # context['data1']=data
+    # print(context['data1'])
     chartConfig = {
         "borderColor": "#ffffff",
         "bgColor":"#ffffff",
@@ -107,7 +107,7 @@ def chart1(vehicles,context):
         data1["value"] = value
         dataSource["data"].append(data1)
 
-    column2D = FusionCharts("column2d", "ex", "100%", "140%", "chart-1", "json", dataSource)
+    column2D = FusionCharts("column2d", "ex", "100%", "120%", "chart-1", "json", dataSource)
     context['output']=column2D.render()
     # return (column2D.render())
     veh_chartConfig={

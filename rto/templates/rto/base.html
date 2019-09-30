@@ -18,27 +18,54 @@
     <link rel="stylesheet" href="{% static 'root/assets/vendor/charts/c3charts/c3.css' %}">
     <link rel="stylesheet" href="{% static 'root/assets/vendor/fonts/flag-icon-css/flag-icon.min.css' %}">
     <link rel="stylesheet" href="{% static 'root/css/style.css' %}">
+    <style type="text/css">
+        g[class$='creditgroup'] {
+             display:none !important;
+        }
+    </style>
+    <script type="text/javascript" src="{% static 'root/FusionChartjs/fusioncharts.js' %}"></script>
+
+    <script type="text/javascript" src="{% static 'root/FusionChartjs/themes/fusioncharts.theme.fusion.js' %}"></script>
+
     {% block style %}
     {% endblock %}
 
 </head>
 
 <body>
-    <div class="dashboard-header">
+
+
+<div class="dashboard-main-wrapper">
+        <div class="dashboard-header">
         <nav class="navbar navbar-expand-lg bg-white fixed-top">
-            <a class="navbar-brand" href="{% url 'rto-dashboard' %}">{{ name }}</a>
+            <a class="navbar-brand" href="{% url 'manufacturer-dashboard' %}">{{ name }}</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse " id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto navbar-right-top">
-                    <li class="nav-item dropdown nav-user">
-                        <a class="btn btn-outline-danger logout-button" href="{% url 'logout' %}"><i class="fas fa-power-off mr-2"></i>Logout</a>
+                    {% if 'display' in request.path %}
+                    <li class="nav-item">
+                        <div id="custom-search" class="top-search-bar">
+                            <input type="text" class="form-control" name="search" id="search-bar" placeholder="Search.." onkeyup="search()"/>
+                        </div>
+                    </li>
+                    {% endif %}
+
+                    <li class="nav-item">
+                        <div class="top-search-bar">
+                            <a class="btn btn-outline-danger" href="{% url 'logout' %}"><i class="fas fa-power-off mr-2"></i>Logout</a>
+                        </div>
                     </li>
                 </ul>
             </div>
         </nav>
     </div>
+
+
+
+
+
 
 <!--        left side bar      -->
     <div class="nav-left-sidebar sidebar-dark">
